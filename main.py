@@ -67,9 +67,9 @@ def sim_process(sim_queue, client_queue):
                 value = msg['value']
 
                 if isinstance(value, bool):
-                    value = 1.0 if value else 0.0
-
-                sim.set_real(ref, value)
+                    sim.set_bool(ref, value)
+                else:
+                    sim.set_real(ref, value)
             elif msg['type'] == 'watch':
                 for ref in msg.get('real', []):
                     watches['real'].add(ref)

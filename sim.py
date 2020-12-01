@@ -6,7 +6,7 @@ class Simulation:
     def __init__(self, model_path):
         oms = OMSimulator('./temp')
         oms.newModel('model')
-        oms.addSystem('model.root', oms.system_sc)
+        oms.addSystem('model.root', oms.system_wc)  # WC for CS FMUs
 
         oms.addSubModel('model.root.system1', model_path)
         oms.setResultFile('model', '')
@@ -34,6 +34,8 @@ class Simulation:
     def set_real(self, ref, value):
         return self.oms.setReal('model.root.system1.' + ref, value)
 
+    def set_bool(self, ref, value):
+        return self.oms.setBoolean('model.root.system1.' + ref, value)
 
 if __name__ == '__main__':
     sim = Simulation()
